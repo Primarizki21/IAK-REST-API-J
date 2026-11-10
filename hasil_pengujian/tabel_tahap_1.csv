@@ -1,4 +1,5 @@
 ﻿Skenario,Metode,Endpoint,Status Diharapkan,Status Aktual,Hasil,Ringkasan Respons
+GET daftar barang,GET,/v1/barang,200,200,LULUS,"{""BRG-001"": {""nama"": ""Pulpen"", ""stok"": 42, ""gudang"": ""Jakarta""}, ""BRG-002"": {""nama"": ""Buku tulis"", ""stok"": 15, ""gudang"": ""Surabaya""}}"
 GET stok barang ada,GET,/v1/barang/BRG-001/stok,200,200,LULUS,"{""kodeBarang"": ""BRG-001"", ""stok"": 42, ""gudang"": ""Jakarta""}"
 GET barang tidak ada,GET,/v1/barang/BRG-999/stok,404,404,LULUS,"{""error"": ""Barang tidak ditemukan""}"
 POST barang lengkap,POST,/v1/barang,201,201,LULUS,"{""kodeBarang"": ""BRG-003"", ""nama"": ""Penghapus"", ""stok"": 30, ""gudang"": ""Jakarta""}"

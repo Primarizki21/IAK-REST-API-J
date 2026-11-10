@@ -11,3 +11,10 @@ wheels/
 
 # SQLite artifacts (regenerate: uv run python init_database.py --reset)
 database/*.db
+
+# Generated during test runs
+hasil_pengujian/respons_*.json
+
+# Course material and Office lock files
+TM\ 12\ -\ RESTful\ API.pptx
+~$*
