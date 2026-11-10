@@ -71,6 +71,10 @@ async def auth_and_log(request: Request, call_next):
     else:
         response = await call_next(request)
 
+    # ngrok/proxy meneruskan IP asli lewat X-Forwarded-For; request.client.host hanya melihat loopback.
+    forwarded = request.headers.get("x-forwarded-for", "").split(",")[0].strip()
+    client_ip = forwarded or (request.client.host if request.client else "unknown")
+
     # Catat SEMUA request, termasuk 401. Jangan pernah menyimpan secret atau token.
     try:
         with db_connect("wisuda") as db:
@@ -79,8 +83,7 @@ async def auth_and_log(request: Request, call_next):
                 VALUES (?, ?, ?, ?, ?, ?, ?)""", (
                 datetime.now(timezone.utc).isoformat(timespec="seconds"),
                 request.state.client_id, int(request.state.authenticated),
-                request.method, path, response.status_code,
-                request.client.host if request.client else "unknown"
+                request.method, path, response.status_code, client_ip
             ))
     except (sqlite3.Error, RuntimeError) as exc:
         print("WARNING: gagal menulis audit log:", exc)
