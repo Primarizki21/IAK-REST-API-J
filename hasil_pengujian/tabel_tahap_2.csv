@@ -1,0 +1,8 @@
+﻿Skenario,Metode,Endpoint,Status Diharapkan,Status Aktual,Hasil,Ringkasan Respons
+Tanpa Authorization,GET,/v1/barang/BRG-001/stok,401,401,LULUS,"{""error"": ""Token tidak ada, tidak valid, atau kedaluwarsa""}"
+Secret salah,POST,/oauth/token,401,401,LULUS,"{""error"": ""Kredensial client tidak valid""}"
+Token dua kali berbeda,-,-,Token A != Token B,Berbeda,LULUS,
+Token valid,GET,/v1/barang/BRG-001/stok,200,200,LULUS,"{""kodeBarang"": ""BRG-001"", ""stok"": 42, ""gudang"": ""Jakarta""}"
+Token palsu,GET,/v1/barang/BRG-001/stok,401,401,LULUS,"{""error"": ""Token tidak ada, tidak valid, atau kedaluwarsa""}"
+Token kedaluwarsa,GET,/v1/barang/BRG-001/stok,401,401,LULUS,"{""error"": ""Token tidak ada, tidak valid, atau kedaluwarsa""}"
+Token baru setelah kedaluwarsa,GET,/v1/barang/BRG-001/stok,200,200,LULUS,"{""kodeBarang"": ""BRG-001"", ""stok"": 42, ""gudang"": ""Jakarta""}"

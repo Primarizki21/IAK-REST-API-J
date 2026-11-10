@@ -1,0 +1,10 @@
+﻿Skenario,Metode,Endpoint,Status Diharapkan,Status Aktual,Hasil,Ringkasan Respons
+GET stok barang ada,GET,/v1/barang/BRG-001/stok,200,200,LULUS,"{""kodeBarang"": ""BRG-001"", ""stok"": 42, ""gudang"": ""Jakarta""}"
+GET barang tidak ada,GET,/v1/barang/BRG-999/stok,404,404,LULUS,"{""error"": ""Barang tidak ditemukan""}"
+POST barang lengkap,POST,/v1/barang,201,201,LULUS,"{""kodeBarang"": ""BRG-003"", ""nama"": ""Penghapus"", ""stok"": 30, ""gudang"": ""Jakarta""}"
+POST kode duplikat,POST,/v1/barang,409,409,LULUS,"{""error"": ""Kode barang sudah ada""}"
+POST tanpa nama,POST,/v1/barang,400,400,LULUS,"{""error"": ""kode, nama, dan stok (bilangan bulat >= 0) wajib diisi""}"
+PUT stok teks,PUT,/v1/barang/BRG-003/stok,400,400,LULUS,"{""error"": ""stok harus berupa angka bulat >= 0""}"
+PUT stok valid,PUT,/v1/barang/BRG-003/stok,200,200,LULUS,"{""kodeBarang"": ""BRG-003"", ""stok"": 25}"
+DELETE pertama,DELETE,/v1/barang/BRG-003,204,204,LULUS,
+DELETE kedua,DELETE,/v1/barang/BRG-003,404,404,LULUS,"{""error"": ""Barang tidak ditemukan""}"

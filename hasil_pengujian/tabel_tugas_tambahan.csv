@@ -1,0 +1,13 @@
+﻿Skenario,Metode,Endpoint,Status Diharapkan,Status Aktual,Hasil,Ringkasan Respons
+Profil mahasiswa,GET,/v1/akademik/mahasiswa/MHS001,200,200,LULUS,"{""nim"": ""MHS001"", ""nama"": ""Alya Pratama"", ""status_akademik"": ""LULUS""}"
+Verifikasi akademik,GET,/v1/akademik/mahasiswa/MHS001/kelayakan-wisuda?periode=WIS-2026-2,200,200,LULUS,"{""nim"": ""MHS001"", ""layak"": true, ""alasan"": [], ""periode_id"": ""WIS-2026-2""}"
+Tunggakan MHS002,GET,/v1/keuangan/mahasiswa/MHS002/kewajiban,200,200,LULUS,"{""nim"": ""MHS002"", ""lunas"": false, ""total_tunggakan"": 2000000}"
+Bebas pustaka MHS003,GET,/v1/perpustakaan/mahasiswa/MHS003/bebas-pustaka,200,200,LULUS,"{""nim"": ""MHS003"", ""bebas_pustaka"": false, ""kendala"": [""1 peminjaman belum dikembalikan"", ""Denda belum dibayar: Rp50000""]}"
+Pendaftaran yang memenuhi syarat,POST,/v1/wisuda/pendaftaran,201,201,LULUS,"{""id"": ""WD-001"", ""status"": ""TERDAFTAR"", ""verifikasi"": ""MEMENUHI""}"
+Lihat status pendaftaran,GET,/v1/wisuda/pendaftaran/WD-001,200,200,LULUS,"{""id"": ""WD-001"", ""nim"": ""MHS001"", ""periode_id"": ""WIS-2026-2"", ""status"": ""TERDAFTAR"", ""verifikasi"": ""MEMENUHI""}"
+Idempotency-Key yang sama,POST,/v1/wisuda/pendaftaran,200,200,LULUS,"{""id"": ""WD-001"", ""nim"": ""MHS001"", ""periode_id"": ""WIS-2026-2"", ""status"": ""TERDAFTAR"", ""verifikasi"": ""MEMENUHI""}"
+Pendaftaran duplikat dengan key baru,POST,/v1/wisuda/pendaftaran,409,409,LULUS,"{""error"": ""Mahasiswa sudah terdaftar pada periode ini""}"
+Pendaftaran belum lunas,POST,/v1/wisuda/pendaftaran,422,422,LULUS,"{""error"": ""Persyaratan wisuda belum terpenuhi"", ""nim"": ""MHS002"", ""alasan"": [""Kewajiban keuangan belum lunas""]}"
+Tanpa token endpoint Wisuda,GET,/v1/wisuda/pendaftaran/WD-001,401,401,LULUS,"{""error"": ""Token tidak ada, tidak valid, atau kedaluwarsa""}"
+Portal dilarang membaca audit,GET,/v1/audit-log,403,403,LULUS,"{""error"": ""Hanya admin-kampus dapat membaca audit log""}"
+Admin membaca audit log,GET,/v1/audit-log?limit=100,200,200,LULUS,"{""jumlah"": 33, ""logs"": [{""id"": 33, ""waktu_utc"": ""2026-11-09T13:13:29+00:00"", ""client_id"": ""portal-wisuda"", ""authenticated"": 1, ""method"": ""GET"", ""endpoint"": ""/v1/audit-log"", ""status_code"": 403, ""ip_address"": ""127.0.0.1""}, {""id"": 32, ""waktu_utc"": ""2026"
