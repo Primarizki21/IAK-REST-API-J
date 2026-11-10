@@ -1,0 +1,11 @@
+[project]
+name = "iak-rest-api"
+version = "0.1.0"
+description = "TM12 - RESTful API pendaftaran wisuda: latihan integrasi SOA dengan FastAPI + SQLite"
+readme = "README_SUBMISSION.md"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.162.3",
+    "requests>=2.34.2",
+    "uvicorn>=0.54.0",
+]
