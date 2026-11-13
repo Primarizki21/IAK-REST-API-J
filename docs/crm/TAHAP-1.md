@@ -46,7 +46,7 @@ Tidak ditambahkan unit test yang hanya mencerminkan komponen statis. Checklist m
 
 ## Kolaborasi dan kelanjutan
 
-PR disiapkan dari feature branch menuju main, tanpa merge otomatis. Workflow `.github/workflows/crm-ci.yml` menjalankan npm ci, lint, Prisma generation, typecheck dan build tanpa secret database. Sebelum pengembangan berikutnya, reviewer memeriksa PR dan tampilan lokal; anggota kelompok menyepakati kontrak data serta kepemilikan migration. Pengerjaan berhenti pada fondasi sesuai lingkup Tahap 1.
+Draft PR [#1](https://github.com/Primarizki21/IAK-REST-API-J/pull/1) telah dibuat dari feature branch menuju main, tanpa merge. Commit implementasi: `5b7363d`. Workflow `.github/workflows/crm-ci.yml` menjalankan npm ci, lint, Prisma generation, typecheck dan build tanpa secret database. Sebelum pengembangan berikutnya, reviewer memeriksa PR dan tampilan lokal; anggota kelompok menyepakati kontrak data serta kepemilikan migration. Pengerjaan berhenti pada fondasi sesuai lingkup Tahap 1.
 
 Daftar perintah dan hasil: [COMMANDS.md](COMMANDS.md). Panduan instalasi: [README aplikasi](../../apps/crm/README.md).
 

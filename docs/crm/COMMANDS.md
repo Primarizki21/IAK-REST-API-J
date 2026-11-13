@@ -38,3 +38,13 @@ Working directory untuk npm: `apps/crm`.
 - `db:deploy`, `db:migrate`, query/CRUD database: belum dijalankan karena layanan PostgreSQL dan kredensial tidak tersedia.
 - Browser desktop/mobile: belum dijalankan karena `cua_repl.js` tidak tersedia. Sesuai panduan preview managed, tidak menjalankan server preview atau memasang browser alternatif. Build/prerender bukan bukti tampilan atau interaksi browser telah diuji.
 - CI GitHub: hasil lokal bukan hasil Actions; periksa tab Checks pada PR setelah push.
+
+## Commit dan Pull Request
+
+- `git add README.md .github/workflows/crm-ci.yml apps/crm docs/crm`, `git diff --cached --check`: berhasil, 44 file tercakup.
+- `git commit -m "feat(crm): add phase-one Next.js dashboard foundation"`: berhasil, commit implementasi `5b7363d`.
+- `git -c credential.helper= -c 'credential.helper=!gh auth git-credential' push --set-upstream origin feat/crm-foundation`: berhasil melalui kredensial sesi tanpa menyimpan token dalam file.
+- Draft PR dibuat melalui plugin GitHub: https://github.com/Primarizki21/IAK-REST-API-J/pull/1, base `main`, head `feat/crm-foundation`, tidak di-merge.
+- `gh run list --repo Primarizki21/IAK-REST-API-J --branch feat/crm-foundation --limit 5 --json databaseId,name,status,conclusion,url`: workflow push/PR sedang berjalan pada pemeriksaan awal; lihat tab Checks untuk status terbaru.
+- `git status --short`: bersih setelah commit implementasi. `git ls-remote --heads origin main`: main masih menunjuk commit awal.
+- Catatan penyerahan ini disimpan dengan commit dokumentasi terpisah lalu dikirim ke feature branch yang sama.
