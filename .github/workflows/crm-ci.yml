@@ -1,0 +1,27 @@
+name: CRM foundation checks
+on:
+  pull_request:
+    paths: ["apps/crm/**", ".github/workflows/crm-ci.yml"]
+  push:
+    branches: ["feat/crm-foundation"]
+    paths: ["apps/crm/**", ".github/workflows/crm-ci.yml"]
+permissions:
+  contents: read
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/crm
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: apps/crm/.nvmrc
+          cache: npm
+          cache-dependency-path: apps/crm/package-lock.json
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run db:generate
+      - run: npm run typecheck
+      - run: npm run build

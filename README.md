@@ -139,3 +139,7 @@ lebih dari beberapa menit.
 - Jangan menaruh token atau `client_secret` di `audit_log`; kode sudah menjaga itu.
 - `client_tahap1.py` aman dijalankan berulang karena `BRG-003` dihapus di akhir
   setiap run, tetapi `client_tugas.py` butuh `init_database.py --reset` lebih dulu.
+
+## Final project CRM telekomunikasi
+
+Fondasi Next.js, TypeScript, Tailwind CSS, Prisma dan PostgreSQL tersedia terpisah di [`apps/crm`](apps/crm/README.md). Panduan di atas tetap berlaku untuk tugas REST API sebelumnya. Dokumentasi pengerjaan CRM ada di [`docs/crm/TAHAP-1.md`](docs/crm/TAHAP-1.md).
